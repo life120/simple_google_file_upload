@@ -1,0 +1,123 @@
+<script>
+	function fileUploaded(status) {
+    // document.getElementById('output').style.display = 'block';
+    // document.getElementById('myForm').style.display = 'none';
+    document.getElementById('output').innerHTML = status;
+    document.getElementById('newSubmission').style.display = 'block';
+  }
+  function redoSurvey() {
+    document.getElementById('myForm').style.display = 'block';
+    var questions = document.getElementsByClassName('questions')
+    for (i=0;i<questions.length;i++) {
+      questions[i].value = '';
+
+    }
+
+    document.getElementById('newSubmission').style.display = 'none';
+    document.getElementById('output').style.display = 'none';
+    document.getElementById('submitForm').value = 'Submit';
+    }
+  function eqSelect() {
+    var ans = document.getElementById("q1Ans").value;
+    var q1Others = document.getElementById("q1Others");
+    var pumpDiv = document.getElementsByClassName("pumpDiv");
+    var pumpLine = document.getElementsByClassName("pumpLine");
+    var othersDiv = document.getElementsByClassName("otherDiv");
+    var submissionDiv = document.getElementById("submissionDiv")
+    // settles the others option
+    if (ans === "others") {
+        q1Others.style.display = "inline";
+    } else {
+        q1Others.style.display = "none";
+    }
+    // settles pump showcase
+    if (ans === "pumps") {
+        for (i = 0; i < pumpDiv.length; i++) {
+            pumpDiv[i].style.display = "block";
+        }
+        for (i=0; i < pumpLine.length; i++) {
+            pumpLine[i].style.display = "block"
+        }
+        // submissionDiv.style.display = "block"
+        // for (i=0; i<othersDiv.length;i++){
+        //     othersDiv[i].style.display = "none"
+        // }
+    } else {
+        for (i = 0; i < pumpDiv.length; i++) {
+            pumpDiv[i].style.display = "none";
+        }
+        for (i=0; i < pumpLine.length; i++) {
+            pumpLine[i].style.display = "none"
+        }
+        // submissionDiv.style.display = "none"
+        // for (i=0; i<othersDiv.length;i++){
+        //     othersDiv[i].style.display = "block"
+        // }      
+    }
+  }
+
+  function pumpVibChange() {
+      var q2Ans = document.getElementById("pumpVibPropAns").value;
+      var q2Description = document.getElementById("pumpVibPropDetail");
+      switch(q2Ans) {
+          case "continuous":
+              q2Description.innerHTML = "Description: Uninterrupted vibrations for a defined period (usually throughout daytime and/or nighttime";    
+              break;
+          case "cyclical":
+              q2Description.innerHTML = "Description: Event repeats itself in regular intervals";
+              break;
+          case "intermittant":
+              q2Description.innerHTML = "Description: Events that occur in irregular intervals";    
+      }
+  }
+
+  function pumpSelect() {
+      var selection = document.getElementById("pumpType").value;
+      var mHorizontal = document.getElementsByClassName("pumpMHorizontal");
+      var mVertical = document.getElementsByClassName("pumpMVertical");
+      if (selection === "centrifugalV" || selection === "submersible" || selection === "piston") {
+          for (i=0;i < mHorizontal.length; i++) {
+              mHorizontal[i].style.display = "none";
+          }
+          for (i=0; i < mVertical.length; i++) {
+              mVertical[i].style.display = "block";
+          }
+      } else {
+          for (i=0;i < mHorizontal.length; i++) {
+              mHorizontal[i].style.display = "block";
+          }
+          for (i=0; i < mVertical.length; i++) {
+              mVertical[i].style.display = "none";
+          }
+      }
+
+  }
+
+  function formSubmitted() {
+    document.getElementById('output').style.display = 'block';
+    document.getElementById('myForm').style.display = 'none';
+    document.getElementById('output').innerHTML = 'Uploading file.... Please wait';
+  }
+
+  function submitForm() {
+    var file, reader = new FileReader();
+    reader.onloadend = function (e) {
+      google.script.run
+      .withSuccessHandler(showMessage)
+      .uploadFileToGoogleDrive(
+        e.target.result,
+        file.name,
+        $('input#name').val(),
+        $('input#email').val(),
+        $('input#company').val()
+      )};
+    file = $('#file')[0].files[0];
+    showMessage('Uploading file..');
+    reader.readAsDataURL(file);
+  };
+                            
+  function showMessage(e) {
+    $('.otherDiv').html(e);
+  }
+
+</script>

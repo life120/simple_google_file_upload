@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+
+<head>
+	<base target="_top">
+	<?!= include('Stylesheet'); ?>
+
+</head>
+<BR>
+<BR>
+<BR>
+
+<body>
+	<div align="center">
+		<div>
+			<h1>Equipment Health Diagnostics</h1>
+			<h3>To create an accurate diagnosis of your vibration problems, fill in the form below with
+				all
+				the required details.</h3>
+		</div>
+		<div align="center">
+			<hr>
+		</div>
+		<form id="myForm" align="center">
+			<h2>Section 1: Client Information</h2>
+			<h3>Please state your name:</h3>
+			<input type="text" name="myName" placeholder="Your name.." class="questions">
+			<h3>Email Address</h3>
+			<input type="email" name="myEmail" placeholder="Your email.." class="questions">
+			<h3>Company Name</h3>
+			<input type="text" name="myCompany" placeholder="Your company.." class="questions">
+			<div align="center">
+				<hr>
+			</div>
+			<h2 class="title">Section 2: Pump Information</h2>
+			<h3 class=>Question 2A: Pump Type</h3>
+			<select name="pumpType" id="pumpType" onchange="pumpSelect()" class="questions">
+                    <option disabled selected value> -- select an option -- </option>
+                    <option value="centrifugeH">Horizontal Centrifugal Pump</option>
+                    <option value="centrifugalV">Vertical Centrifugal Pump</option>
+                    <option value="submersible">Submersible Pump</option>
+                    <option value="diaphragm">Diaphragm Pump</option>
+                    <option value="gear">Gear Pump</option>
+                    <option value="peristaltic">Peristaltic Pump</option>
+                    <option value="lobe">Lobe Pump</option>
+                    <option value="piston">Piston Pump</option>
+      </select>
+			<h3>Question 2B: Pump ID/Reference Number</h3>
+			<input type="text" id="pumpId" name="pumpId" class="questions">
+			<h3>Question 2C: Pump Running Speed (RPM)</h3>
+			<input type="number" placeholder="e.g. 1600" min="1" id="pumpRPM" name="pumpRPM" class="questions">
+			<h3>Question 2D: Last Maintenance Date</h3>
+			<input type="month" id="pumpLastMain" name="pumpLastMain" class="questions">
+			<h3>Question 2E: Maintenance Cycle</h3>
+			<p>Please indicate the interval (in months) between each maintenance</p>
+			<input type="number" min="0" id="mainCycle" name="mainCycle" class="questions">
+			<div align="center">
+				<hr>
+			</div>
+			<h2 class="title">Section 3: Fault Analysis</h2>
+
+			<h3>Question 3A: Please state the nature of the vibration</h3>
+			<select id="pumpVibPropAns" name="value3a" onchange="pumpVibChange()" class="questions">
+                        <option disabled selected value> -- select an option -- </option>
+                        <option value="Continuous Vibration">Continuous</option>
+                        <option value="Cyclical Vibration at regular intervals">Cyclical</option>
+                        <option value="Intermittant Vibrations at irregular intervals">Intermittant</option>
+                    </select>
+			<h3>Question 3B: During which operation status will excessive vibration be present?
+			</h3>
+			<select id="3bValue" name="value3b" class="operationStatusAns" class="questions">
+        <option disabled selected value> -- select an option -- </option>
+        <option value="Vibration occur during start up operation.">Start Up/Shutdown</option>
+        <option value="Vibrations occur during normal operation">Normal Operation</option>
+        <option value="Vibrations occur during emergency operations">Emergency Operation</option>
+      </select>
+			<h3>Question 3C: Does the vibration come with excessive noise?</h3>
+			<select id="q3Ans" name="value3c" class="questions">
+                        <option disabled selected value> -- select an option -- </option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+			</select>
+			<div align="center">
+				<hr>
+			</div>
+			<h2>Section 4: Vibration Measurement</h2>
+
+			<h4>This section requires you to collect several measurements on the pump.
+				Please download the latest version of <a
+					href="https://play.google.com/store/apps/details?id=com.adzaan.vibrolog"
+					target="_blank">VibroLog</a> and follow the instructions to upload the data.
+			</h4>
+			<h3>Motor Drive End Measurement</h3>
+			<p class="pumpMHorizontal">Please place your phone on the motor drive end, screen
+				facing up to the skies, and top and bottom of the phone aligned along the axial
+				direction of the motor.</p>
+			<p class="pumpMVertical">Please place your phone on the motor drive end, screen
+				facing radially out, with the top and bottom of the phone align along the axial
+				direction of the motor.</p>
+			<h3>File Upload</h3>
+			<input type="file" name="myFile" class="questions">
+			<hr class="measurementLine">
+			<h3>Motor Driven End Measurement</h3>
+			<p class="pumpMHorizontal">Please place your phone on the motor driven end, screen
+				facing up to the skies, and top and bottom of the phone aligned along the axial
+				direction of the motor.</p>
+			<p class="pumpMVertical">Please place your phone on the motor driven end, screen
+				facing radially out, with the top and bottom of the phone align along the axial
+				direction of the motor.</p>
+			<h3>File Upload</h3>
+			<input type="file" name="myFile2" class="questions">
+			<hr class="measurementLine">
+			<h3>Pump Drive End Measurement</h3>
+			<p class="pumpMHorizontal">Please place your phone on the pump drive end, screen
+				facing up to the skies, and top and bottom of the phone aligned along the axial
+				direction of the pump.</p>
+			<p class="pumpMVertical">Please place your phone on the pump drive end, screen
+				facing radially out, with the top and bottom of the phone align along the axial
+				direction of the pump.</p>
+			<h3>File Upload</h3>
+			<input type="file" name="myFile3" class="questions">
+			<hr class="measurementLine">
+			<h3>Pump Driven End Measurement</h3>
+			<p class="pumpMHorizontal">Please place your phone on the motor driven end, screen
+				facing up to the skies, and top and bottom of the phone aligned along the axial
+				direction of the pump.</p>
+			<p class="pumpMVertical">Please place your phone on the motor driven end, screen
+				facing radially out, with the top and bottom of the phone align along the axial
+				direction of the pump.</p>
+			<h3>File Upload</h3>
+			<input type="file" name="myFile4" class="questions">
+			<div align="center">
+				<hr>
+			</div>
+			<input type="submit" id="submitForm" value="Submit Form" onclick="formSubmitted();
+                        google.script.run.withSuccessHandler(fileUploaded)
+                        .uploadFiles(this.parentNode);
+                        return false;">
+        </form>
+			<?!= include('JavaScript'); ?>
+			<div align="center">
+				<hr>
+			</div>
+
+			<div id="output"></div>
+			<div id="newSubmission">
+			  <input type="submit" value="New Submission" onclick="redoSurvey()">
+      </div>
+				<hr>
+
+			</div>
+</body>
+
+
+</html>
